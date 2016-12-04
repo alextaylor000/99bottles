@@ -1,26 +1,38 @@
 class Bottles
+  def song
+    verses(99, 0)
+  end
+
+  def verses(*verses)
+    output = (verses[1]..verses[0]).to_a.reverse.map { |n| verse(n) }
+    output.join("\n")
+  end
+
   def verse(num)
-    cur = num
-    after = num - 1
+    after_num = num - 1
 
-    <<-VERSE
-#{pluralize(cur).capitalize} of beer on the wall, #{pluralize(cur)} of beer.
-Take #{quantity(cur)} down and pass it around, #{pluralize(after)} of beer on the wall.
-    VERSE
-  end
-
-  def quantity(num)
-    num == 1 ? "it" : "one"
-  end
-
-  def pluralize(num)
     case num
     when 0
-      "no more bottles"
+      <<-VERSE_0
+No more bottles of beer on the wall, no more bottles of beer.
+Go to the store and buy some more, 99 bottles of beer on the wall.
+      VERSE_0
     when 1
-      "1 bottle"
+      <<-VERSE_1
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+      VERSE_1
     else
-      "#{num} bottles"
+      <<-VERSE_X
+#{num} bottles of beer on the wall, #{num} bottles of beer.
+Take one down and pass it around, #{after_num} #{pluralize_bottle(after_num)} of beer on the wall.
+      VERSE_X
     end
   end
+
+  def pluralize_bottle(num)
+    num == 1 ? "bottle" : "bottles"
+  end
 end
+
+
