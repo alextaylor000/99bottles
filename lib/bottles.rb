@@ -9,7 +9,11 @@ class Bottles
   end
 
   def verse(num)
-    after_num = num - 1
+    new_qty = if (num - 1 == 1)
+                "1 bottle"
+              else
+                "#{num - 1} bottles"
+              end
 
     case num
     when 0
@@ -25,14 +29,8 @@ Take it down and pass it around, no more bottles of beer on the wall.
     else
       <<-VERSE_X
 #{num} bottles of beer on the wall, #{num} bottles of beer.
-Take one down and pass it around, #{after_num} #{pluralize_bottle(after_num)} of beer on the wall.
+Take one down and pass it around, #{new_qty} of beer on the wall.
       VERSE_X
     end
   end
-
-  def pluralize_bottle(num)
-    num == 1 ? "bottle" : "bottles"
-  end
 end
-
-
