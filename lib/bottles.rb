@@ -17,12 +17,12 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
       VERSE_0
     when 1
       <<-VERSE_1
-1 bottle of beer on the wall, 1 bottle of beer.
-Take it down and pass it around, no more bottles of beer on the wall.
+#{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
+Take it down and pass it around, no more #{container(number - 1)} of beer on the wall.
       VERSE_1
     else
       <<-VERSE_X
-#{number} bottles of beer on the wall, #{number} bottles of beer.
+#{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
 Take one down and pass it around, #{number - 1} #{container(number - 1)} of beer on the wall.
       VERSE_X
     end
