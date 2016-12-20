@@ -8,14 +8,8 @@ class Bottles
     output.join("\n")
   end
 
-  def verse(num)
-    new_qty = if (num - 1 == 1)
-                "1 bottle"
-              else
-                "#{num - 1} bottles"
-              end
-
-    case num
+  def verse(number)
+    case number
     when 0
       <<-VERSE_0
 No more bottles of beer on the wall, no more bottles of beer.
@@ -28,9 +22,17 @@ Take it down and pass it around, no more bottles of beer on the wall.
       VERSE_1
     else
       <<-VERSE_X
-#{num} bottles of beer on the wall, #{num} bottles of beer.
-Take one down and pass it around, #{new_qty} of beer on the wall.
+#{number} bottles of beer on the wall, #{number} bottles of beer.
+Take one down and pass it around, #{number - 1} #{container(number - 1)} of beer on the wall.
       VERSE_X
+    end
+  end
+
+  def container(number)
+    if number == 1
+      "bottle"
+    else
+      "bottles"
     end
   end
 end
