@@ -15,11 +15,6 @@ class Bottles
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
       VERSE_0
-    when 1
-      <<-VERSE_1
-#{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
-Take #{pronoun(number)} down and pass it around, #{result(number - 1)} #{container(number - 1)} of beer on the wall.
-      VERSE_1
     else
       <<-VERSE_X
 #{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
