@@ -18,13 +18,29 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
     when 1
       <<-VERSE_1
 #{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
-Take it down and pass it around, no more #{container(number - 1)} of beer on the wall.
+Take #{pronoun(number)} down and pass it around, #{result(number - 1)} #{container(number - 1)} of beer on the wall.
       VERSE_1
     else
       <<-VERSE_X
 #{number} #{container(number)} of beer on the wall, #{number} #{container(number)} of beer.
-Take one down and pass it around, #{number - 1} #{container(number - 1)} of beer on the wall.
+Take #{pronoun(number)} down and pass it around, #{result(number - 1)} #{container(number - 1)} of beer on the wall.
       VERSE_X
+    end
+  end
+
+  def result(number)
+    if number == 0
+      "no more"
+    else
+      number
+    end
+  end
+
+  def pronoun(number)
+    if number == 1
+      "it"
+    else
+      "one"
     end
   end
 
