@@ -9,17 +9,17 @@ class Bottles
   end
 
   def verse(number)
-    case number
-    when 0
-      <<-VERSE_0
-#{quantity(number).capitalize} #{container(number)} of beer on the wall, #{quantity(number)} #{container(number)} of beer.
-#{action(number)}, #{quantity(99)} #{container(number - 1)} of beer on the wall.
-      VERSE_0
-    else
       <<-VERSE_X
 #{quantity(number).capitalize} #{container(number)} of beer on the wall, #{quantity(number)} #{container(number)} of beer.
-#{action(number)}, #{quantity(number - 1)} #{container(number - 1)} of beer on the wall.
+#{action(number)}, #{quantity(successor(number))} #{container(successor(number))} of beer on the wall.
       VERSE_X
+  end
+
+  def successor(number)
+    if number == 0
+      99
+    else
+      number - 1
     end
   end
 
