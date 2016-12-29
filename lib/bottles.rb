@@ -9,12 +9,25 @@ class Bottles
   end
 
   def verse(number)
-    this_bottle = BottleNumber.new(number)
-    next_bottle = BottleNumber.new(this_bottle.successor)
+    this_bottle = BottleNumberFactory.new(number)
+
       <<-VERSE_X
 #{this_bottle.quantity.capitalize} #{this_bottle.container} of beer on the wall, #{this_bottle.quantity} #{this_bottle.container} of beer.
-#{this_bottle.action}, #{next_bottle.quantity} #{next_bottle.container} of beer on the wall.
+#{this_bottle.action}, #{this_bottle.successor.quantity} #{this_bottle.successor.container} of beer on the wall.
       VERSE_X
+  end
+end
+
+class BottleNumberFactory
+  def self.new(number)
+    case number
+    when 0
+      BottleNumber0.new(number)
+    when 1
+      BottleNumber1.new(number)
+    else
+      BottleNumber.new(number)
+    end
   end
 end
 
@@ -26,42 +39,47 @@ class BottleNumber
   end
 
   def successor
-    if number == 0
-      99
-    else
-      number - 1
-    end
+    BottleNumberFactory.new(number - 1)
   end
 
   def action
-    if number == 0
-      "Go to the store and buy some more"
-    else
-      "Take #{pronoun} down and pass it around"
-    end
+    "Take #{pronoun} down and pass it around"
   end
 
   def quantity
-    if number == 0
-      "no more"
-    else
-      number.to_s
-    end
+    number.to_s
   end
 
   def pronoun
-    if number == 1
-      "it"
-    else
-      "one"
-    end
+    "one"
   end
 
   def container
-    if number == 1
-      "bottle"
-    else
-      "bottles"
-    end
+    "bottles"
   end
 end
+
+class BottleNumber0 < BottleNumber
+  def successor
+    BottleNumber.new(99)
+  end
+
+  def action
+    "Go to the store and buy some more"
+  end
+
+  def quantity
+    "no more"
+  end
+end
+
+class BottleNumber1 < BottleNumber
+  def pronoun
+    "it"
+  end
+
+  def container
+    "bottle"
+  end
+end
+
