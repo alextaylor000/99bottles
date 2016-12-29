@@ -25,6 +25,8 @@ class BottleNumberFactory
       BottleNumber0.new(number)
     when 1
       BottleNumber1.new(number)
+    when 6
+      BottleNumber6.new(number)
     else
       BottleNumber.new(number)
     end
@@ -80,6 +82,16 @@ class BottleNumber1 < BottleNumber
 
   def container
     "bottle"
+  end
+end
+
+class BottleNumber6 < BottleNumber
+  def quantity
+    "1"
+  end
+
+  def container
+    "six-pack"
   end
 end
 
