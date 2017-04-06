@@ -1,3 +1,5 @@
+*Note to self:* My solution to the code (including the 'six-pack' solution before I read Chapter 6) is on the branch `30-minute-exercise`
+
 # 99 Bottles
 
 ## The Code
